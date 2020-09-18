@@ -1,12 +1,17 @@
 body {
-  background-color: purple;
+  background-image: url("ped.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: scroll;
+  background-size: 1920px 1200px;
   padding-left: 15px;
+  border: 10px solid transparent;
 }
 
 h1 {
-  font-size: 70px;
+  font-size: 100px;
   text-align: center;
-  color: #C25100;
+  color: #000066;
   font-family: 'lobster';
 }
 
@@ -14,6 +19,7 @@ p {
   font-family: lobster;
   font-size: 25px;
   text-align: center;
+  color: #000066;
 }
 
 p1 {
@@ -34,3 +40,17 @@ h3 {
     text-align: center;
 
 }
+
+a {
+    front-family: lobster;
+    font-size: 30px;
+    text-align: left;
+    color: #000066;
+}
+
+.jumbotron {
+background-image: url('Sign.PNG');
+background-size: 1900px 250px;
+background-repeat: no-repeat;
+}
+

@@ -14,6 +14,9 @@ def Menu(request):
 def boot(request):
     return render(request, 'blog/boot.html', {})
 
+def LogIN(request):
+    return render(request, 'blog/LogIN.html', {})
+
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)

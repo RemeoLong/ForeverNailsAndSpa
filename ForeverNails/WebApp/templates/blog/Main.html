@@ -1,64 +1,6 @@
-{% load static %}
-
-<html>
-    <head>
-        <title>Forever Nails & Spa</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-      <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    <style>
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  background-color: #f1f1f1;
-  border: 1px solid #555;
-}
-
-li a {
-  display: block;
-  color: #000;
-  padding: 8px 16px;
-  text-decoration: none;
-}
-
-li {
-  text-align: center;
-  border-bottom: 1px solid #555;
-}
-
-li:last-child {
-  border-bottom: none;
-}
-
-li a.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
-li a:hover:not(.active) {
-  background-color: #555;
-  color: white;
-}
-</style>
-</head>
-<body>
-
-<h1><a href="/">Forever Nails & Spa</a></h1>
-<ul>
-  <li><a class="active" href="#home">Home</a></li>
-  <li><a href="ServiceMenu">Service Menu</a></li>
-  <li><a href="#contact">Contact</a></li>
-  <li><a href="#about">About</a></li>
-</ul>
-
+{% extends 'blog/base.html' %}
+{% block body %}
 <p>Welcome to Forever Nails & Spa</p>
       <p> We Think you are super!</p>
       <p> Not Really but you know, Customer Service</p>
-
-
-
-    </body>
-</html>
+{% endblock %}

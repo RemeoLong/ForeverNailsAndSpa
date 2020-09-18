@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
-<html>
-    <head>
+    <html>
+        <head>
+
         <title>Forever Nails & Spa</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
       <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    </head>
-<body>
-        <div class="page-header">
-            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-            <h1><a href="/">Forever Nails & Spa</a></h1>
-        </div>
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-                    {% block content %}
-                    {% endblock %}
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+    {% block head %}
+            {% endblock%}
+
+
+            <h1>Forever Nails & Spa</h1>
+<ul>
+  <li><a class="active" href="#home">Home</a></li>
+  <li><a href="ServiceMenu">Service Menu</a></li>
+  <li><a href="contact">Contact</a></li>
+  <li><a href="about">About</a></li>
+    <li><a href="Log In">Log In</a></li>
+</ul>
+            {% block body %}
+            {% endblock %}
+
+
