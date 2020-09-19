@@ -2,29 +2,33 @@ from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from .models import Post
 from .covid_form import PostForm
-
+from django.contrib.auth import authenticate, login
 
 def Main(request):
-    return render(request, 'blog/Main.html', {})
-
+    return render(request, 'index/Main.html', {})
 
 def Menu(request):
-    return render(request, 'blog/Menu.html', {})
+    return render(request, 'index/Menu.html', {})
 
 def boot(request):
-    return render(request, 'blog/boot.html', {})
+    return render(request, 'index/boot.html', {})
 
 def LogIN(request):
-    return render(request, 'blog/LogIN.html', {})
+    return render(request, 'registration/login.html', {})
 
+def Contact(request):
+    return render(request, 'index/Contact.html', {})
+
+def About(request):
+    return render(request, 'index/About.html', {})
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post_detail.html', {'post': post})
+    return render(request, 'index/post_detail.html', {'post': post})
 
 def post_new(request):
     form = PostForm()
-    return render(request, 'blog/post_edit.html', {'form': form})
+    return render(request, 'index/post_edit.html', {'form': form})
 
 
 

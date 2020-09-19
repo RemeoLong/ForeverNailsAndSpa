@@ -47,10 +47,21 @@ a {
     text-align: left;
     color: #000066;
 }
-
 .jumbotron {
 background-image: url('Sign.PNG');
-background-size: 1900px 250px;
+background-size: 500px 250px;
 background-repeat: no-repeat;
 }
 
+.cTable td {
+    text-align: center;
+}
+
+<table border='1' id='mytable' class="cTable">
+<tbody>
+<tr><th>Claim ID</th><th>Status</th></tr>
+<tr><td align="center">22</td><td>333</td></tr>
+<tr><td>22</td><td>333</td></tr>
+<tr><td>22</td><td>333</td></tr>
+</tbody>
+</table>
