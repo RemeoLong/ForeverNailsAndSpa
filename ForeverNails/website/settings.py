@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'WebApp.apps.WebappConfig',
     'django.contrib.admin',
-    'djangobower',
 ]
 
 BOWER_INSTALLED_APPS = (
