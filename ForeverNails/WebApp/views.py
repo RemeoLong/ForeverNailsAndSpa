@@ -19,8 +19,8 @@ def LogIN(request):
 def Contact(request):
     return render(request, 'index/Contact.html', {})
 
-def About(request):
-    return render(request, 'index/About.html', {})
+def location(request):
+    return render(request, 'index/location.html', {})
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)

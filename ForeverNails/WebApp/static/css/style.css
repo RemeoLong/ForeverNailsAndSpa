@@ -46,12 +46,6 @@ a {
     font-size: 30px;
     text-align: left;
     color: #000066;
-}
-.jumbotron {
-background-image: url('Sign.PNG');
-background-size: 500px 250px;
-background-repeat: no-repeat;
-}
 
 .cTable td {
     text-align: center;
