@@ -10,10 +10,14 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
       <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
 
-          <h1><a href="/">Forever Nails & Spa</a></h1>
+          <h1>Forever Nails & Spa</h1>
           <h3>Login Page</h3>
-
-        </head>
+        <style>
+          table, th, input {
+          td-align:center;
+          }
+        </style>
+</head>
         <body>
 
 
@@ -34,12 +38,14 @@
     {% csrf_token %}
     <table>
       <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
+        <td align="center">
+          <td>{{ form.username.label_tag }}</td>
+          <td>{{ form.username }}</td>
       </tr>
       <tr>
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
+        <td align="center">
+          <td>{{ form.password.label_tag }}</td>
+          <td>{{ form.password }}</td>
       </tr>
     </table>
     <input type="submit" value="login" />
@@ -48,3 +54,5 @@
 
   {# Assumes you setup the password_reset view in your URLconf #}
   <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+        </body>
+

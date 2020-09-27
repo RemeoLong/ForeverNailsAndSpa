@@ -46,16 +46,16 @@ a {
     font-size: 30px;
     text-align: left;
     color: #000066;
+}
 
 .cTable td {
     text-align: center;
 }
 
-<table border='1' id='mytable' class="cTable">
-<tbody>
-<tr><th>Claim ID</th><th>Status</th></tr>
-<tr><td align="center">22</td><td>333</td></tr>
-<tr><td>22</td><td>333</td></tr>
-<tr><td>22</td><td>333</td></tr>
-</tbody>
-</table>
+ .jumbotron {
+   background: url('static/css/sign.PNG') no-repeat;
+   -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+}

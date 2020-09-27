@@ -10,9 +10,6 @@ def Main(request):
 def Menu(request):
     return render(request, 'index/Menu.html', {})
 
-def boot(request):
-    return render(request, 'index/boot.html', {})
-
 def LogIN(request):
     return render(request, 'registration/login.html', {})
 
