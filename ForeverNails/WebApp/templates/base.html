@@ -176,12 +176,27 @@ span.psw {
   <h1>Forever Nails & Spa</h1>
   <h3>11315 South Hwy 6 Suite C</h3>
 </div>
+
 <div class="body-image">
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <div class ="container-fluid">
-  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+<ul class="sidebar-nav">
+{% if user.is_authenticated %}
+  <p>Welcome: {{ user.get_username }}</p>
+  <li><a href="{% url 'logout'%}?next={{request.path}}"><p>Logout</p></a></li>
+  {% else %}
+   <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+  {% endif %}
+</ul>
 
 <div id="id01" class="modal">
+
+  <form class="modal-content animate" action="{% url 'login' %}" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src='static/css/license.jpg' alt="Avatar" class="avatar">
+    </div>
+
 {% if form.errors %}
     <p>Your username and password didn't match. Please try again.</p>
   {% endif %}
@@ -195,37 +210,21 @@ span.psw {
     {% endif %}
   {% endif %}
 
-  <form class="modal-content animate" action="{% url 'login' %}" method="post">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src='static/css/license.jpg' alt="Avatar" class="avatar">
-    </div>
-
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
     <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+      <label for="form.username"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="username" required>
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+      <label for="form.password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
 
       <button type="submit">Login</button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
     </div>
-{% csrf_token %}
-    <table>
-      <tr>
-        <td align="center">
-          <td>{{ form.username.label_tag }}</td>
-          <td>{{ form.username }}</td>
-      </tr>
-      <tr>
-        <td align="center">
-          <td>{{ form.password.label_tag }}</td>
-          <td>{{ form.password }}</td>
-      </tr>
-    </table>
+
     <div class="container" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
       <span class="psw">Forgot <a href="{% url 'password_reset' %}">Password?</a></span>
