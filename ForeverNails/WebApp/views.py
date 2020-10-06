@@ -2,7 +2,11 @@ from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from .models import Post
 from .covid_form import PostForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout, authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib import messages
+
 
 def Main(request):
     return render(request, 'index/Main.html', {})
@@ -18,6 +22,28 @@ def Contact(request):
 
 def location(request):
     return render(request, 'index/location.html', {})
+
+def register(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            login(request, user)
+            return redirect("Home")
+
+        else:
+            for msg in form.error_messages:
+                print(form.error_messages[msg])
+
+            return render(request = request,
+                          template_name = "index/register.html",
+                          context={"form":form})
+
+    form = UserCreationForm
+    return render(request = request,
+                  template_name = "index/register.html",
+                  context={"form":form})
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
