@@ -34,7 +34,7 @@ class Employee(models.Model):
     )
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
-    phone_number = models.IntegerField(max_length=9)
+    phone_number = models.IntegerField(default="", editable=False)
     skills = models.CharField(max_length=100, choices=skills_choices)
     clock_in = models.DateTimeField(default=timezone.now)
     clock_out = models.DateTimeField(default=timezone.now)
@@ -51,7 +51,7 @@ class Employee(models.Model):
 class Customer(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
-    phone_number = models.IntegerField(max_length=9)
+    phone_number = models.IntegerField(default="", editable=False)
     email = models.EmailField(max_length=200)
     birth_date = models.DateTimeField()
     visit_date = models.DateTimeField(default=timezone.now)

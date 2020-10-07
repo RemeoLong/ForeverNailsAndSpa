@@ -186,6 +186,7 @@ span.psw {
   <p><a href="{% url 'logout'%}?next={{request.path}}"><p>Logout</p></a></p>
   {% else %}
    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+  <p><a href="{% url 'register'%}?next={{request.path}}"><p>Register</p></a></p>
     {% endif %}
 </ul>
 
@@ -249,10 +250,7 @@ span.psw {
         <li class="nav-item">
         <a class="nav-link" href="location">Location</a>
       </li>
-       <li class="nav-item">
-        <a class="nav-link" href="register">Register</a>
-      </li>
-      </ul>
+        </ul>
     </div>
   </div>
 </nav>
