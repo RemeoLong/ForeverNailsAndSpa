@@ -20,6 +20,9 @@ def LogIN(request):
 def Contact(request):
     return render(request, 'index/Contact.html', {})
 
+def Gallery(request):
+    return render(request, 'index/gallery.html', {})
+
 def location(request):
     return render(request, 'index/location.html', {})
 

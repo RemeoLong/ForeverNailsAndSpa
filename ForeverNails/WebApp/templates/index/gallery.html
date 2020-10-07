@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+mark {
+  font-family: lobster;
+  font-size: 25px;
+  text-align:center;
+  color: #000066;
+  background-color: grey;
+}
+.body-image {
+  background: url('static/css/ped1.jpg') no-repeat 100%;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 1920 px 250 px;
+  height: 695px;
+  position: relative;
+}
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+{% endblock %}
+
+{% block body %}
+<mark>Welcome to the Gallery Section</mark>
+<p style=background-color="yellow">Here is where your Services will be performed. </p>
+<p>Click on the Pictures to see a bigger Image</p>
+
+<div class="gallery">
+  <a target="_blank" href="static/css/color_front.jpg">
+    <img src="static/css/color_front.jpg" alt="Color Selection" width="800" height="800">
+  </a>
+    <div class="desc"><p1></p1></div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="static/css/front_desk.jpg">
+    <img src="static/css/front_desk.jpg" alt="Front Desk" width="800" height="800">
+  </a>
+  <div class="desc"></div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="static/css/waiting.jpg">
+    <img src="static/css/waiting.jpg" alt="Waiting Area" width="800" height="800">
+  </a>
+  <div class="desc"></div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="static/css/nail_left.jpg">
+    <img src="static/css/nail_left.jpg" alt="Left Nail Station" width="800" height="800">
+  </a>
+  <div class="desc"></div>
+</div>
+
+{% endblock %}
