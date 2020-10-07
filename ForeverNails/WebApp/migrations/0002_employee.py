@@ -17,6 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('first_name', models.CharField(max_length=200)),
                 ('last_name', models.CharField(max_length=200)),
+                ('phone_number', models.IntegerField(default=0)),
                 ('skills', models.CharField(choices=[('NF', 'Solar Full Set'), ('NPW', 'Solar P&W Full Set'), ('NPC', 'Powder Color Full Set'), ('M', 'Manicure Shellac'), ('P', 'Pedicure Shellac'), ('W', 'Waxing'), ('F', 'Facial'), ('E', 'Eyelashes'), ('M', 'Massage'), ('T', 'Permanent Tattoo')], max_length=100)),
                 ('clock_in', models.DateTimeField(default=django.utils.timezone.now)),
                 ('active', models.BooleanField(default=True)),

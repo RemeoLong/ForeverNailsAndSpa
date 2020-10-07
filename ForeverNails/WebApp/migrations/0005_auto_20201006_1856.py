@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='employee',
             name='phone_number',
-            field=models.IntegerField(default='', editable=False, max_length=9),
+            field=models.IntegerField(default=0, editable=False, max_length=9),
         ),
         migrations.AlterField(
             model_name='customer',
@@ -29,6 +29,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='customer',
             name='phone_number',
-            field=models.IntegerField(default='', editable=False, max_length=9),
+            field=models.IntegerField(default=0, editable=False, max_length=9),
         ),
     ]
