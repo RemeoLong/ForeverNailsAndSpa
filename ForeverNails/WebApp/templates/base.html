@@ -23,6 +23,14 @@
     height: auto;
     margin-bottom:0;
 }
+.nav {
+display: flex;
+justify-content: center;
+list-style: none;
+}
+.li {
+text-align:center;
+}
 .body-image {
   background: url('static/css/ped1.jpg') no-repeat 100%;
   -webkit-background-size: 100% 100%;
@@ -186,7 +194,6 @@ span.psw {
   <p><a href="{% url 'logout'%}?next={{request.path}}"><p>Logout</p></a></p>
   {% else %}
    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
-  <p><a href="{% url 'register'%}?next={{request.path}}"><p>Register</p></a></p>
     {% endif %}
 </ul>
 
@@ -250,6 +257,11 @@ span.psw {
         <li class="nav-item">
         <a class="nav-link" href="location">Location</a>
       </li>
+       <ul class="sidebar-nav">
+{% if user.is_authenticated %}
+     {% else %}
+     <p><a href="{% url 'register'%}?next={{request.path}}"><p>Register</p></a></p>
+    {% endif %}
         </ul>
     </div>
   </div>
