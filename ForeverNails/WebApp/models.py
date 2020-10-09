@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.utils import timezone
 
 
@@ -48,20 +50,20 @@ class Employee(models.Model):
         return str(self.first_name) + str(self.last_name)
 
 
-class Customer(models.Model):
-    first_name = models.CharField(max_length=200)
-    last_name = models.CharField(max_length=200)
-    phone_number = models.IntegerField(default="", editable=False)
-    email = models.EmailField(max_length=200)
-    birth_date = models.DateTimeField()
-    visit_date = models.DateTimeField(default=timezone.now)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone_number = models.IntegerField(default="", editable=True)
+    birth_date = models.DateTimeField(null=True, blank=True)
 
-    def publish(self):
-        self.published_date = timezone.now()
-        self.save()
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
 
-    def __str__(self):
-        return str(self.first_name) + str(self.last_name)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
+
+
+
 
 
 

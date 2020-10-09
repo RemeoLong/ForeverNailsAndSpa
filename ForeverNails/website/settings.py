@@ -147,7 +147,7 @@ STATICFILES_FINDERS = [
     'djangobower.finders.BowerFinder',
 ]
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/profile'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
