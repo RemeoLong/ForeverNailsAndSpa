@@ -58,10 +58,15 @@ def Profile(request):
     if request.method == "POST":
         u_form = UserForm(request.POST, request.FILES)
         p_form = ProfileForm(request.POST, request.FILES)
-        u_form.save(commit=True)
-        p_form.save(commit=True)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, 'Your profile was successfully updated!')
+            return redirect('index/profile.html')
+    else:
+        u_form = UserForm
+        p_form = ProfileForm
         return render(request, 'index/profile.html', {'u_form': u_form, 'p_form': p_form})
-
 
 
 
