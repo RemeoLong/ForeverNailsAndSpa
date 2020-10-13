@@ -51,7 +51,7 @@ class Employee(models.Model):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     phone_number = models.IntegerField(default="", editable=True)
     birth_date = models.DateTimeField(null=True, blank=True)
 
@@ -61,6 +61,9 @@ class Profile(models.Model):
 
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
+
+    def __str__(self):
+        return f"{self.phone_number}, {self.birth_date}"
 
 
 

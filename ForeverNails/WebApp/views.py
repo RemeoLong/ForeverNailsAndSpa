@@ -4,12 +4,13 @@ from .models import Post
 from .covid_form import PostForm
 from django.contrib.auth import logout, authenticate, login
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.views.generic import TemplateView
 from braces.views import LoginRequiredMixin
 from .form import *
+from django.contrib.auth.decorators import login_required
 
 def Main(request):
     return render(request, 'index/Main.html', {})
@@ -51,8 +52,18 @@ def register(request):
                   template_name = "index/register.html",
                   context={"form":form})
 
+
+@login_required(login_url="/Home")
 def Profile(request):
-    return render(request, 'index/profile.html', {})
+    if request.method == "POST":
+        u_form = UserForm(request.POST, request.FILES)
+        p_form = ProfileForm(request.POST, request.FILES)
+        u_form.save(commit=True)
+        p_form.save(commit=True)
+        return render(request, 'index/profile.html', {'u_form': u_form, 'p_form': p_form})
+
+
+
 
 def update_profile(request, user_id):
     user = User.objects.get(pk=user_id)
@@ -61,7 +72,9 @@ def update_profile(request, user_id):
 class ProfileUpdateView(LoginRequiredMixin, TemplateView):
     user_form = UserForm
     profile_form = ProfileForm
-    template_name = 'base.html'
+    user_update = UserUpdateForm
+    profile_update = ProfileUpdateForm
+    template_name = 'profile.html'
 
     def post(self, request):
 
@@ -69,19 +82,21 @@ class ProfileUpdateView(LoginRequiredMixin, TemplateView):
 
         user_form = UserForm(post_data, instance=request.user)
         profile_form = ProfileForm(post_data, instance=request.user.profile)
+        user_update = UserUpdateForm(post_data, instance=request.user)
+        profile_update = ProfileUpdateForm(post_data, instance=request.user.profile)
 
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            messages.success(request, 'Your Profile has been Successfully Updated!')
+        if user_update.is_valid() and profile_update.is_valid():
+            user_update.save()
+            profile_update.save()
+            messages.success(request, 'Your profile was successfully updated!')
             return HttpResponseRedirect(reverse_lazy('profile'))
 
         context = self.get_context_data(
-            user_form=user_form,
-            profile_form=profile_form
-        )
+                                        user_update=UserUpdateForm,
+                                        profile_update=ProfileUpdateForm
+                                    )
 
-        return self.render_to_response(context)
+        return render(request, 'index/profile.html', {'profile_update': ProfileUpdateForm})
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)

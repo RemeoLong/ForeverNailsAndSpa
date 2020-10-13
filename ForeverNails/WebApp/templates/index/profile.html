@@ -1,34 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block head %}
- p {
-  font-family: lobster;
-  font-size: 25px;
-  text-align: center;
-  color: white;
-}
-{% endblock %}
-
 {% block body %}
-
-{% if user.is_not_authenticated %}
-      <p>Please Log into your Account to update your Profile.</p>
-      <p>Please login to see this page.</p>
-    {% else %}
-
-    {% endif %}
-
-
 <h2>{{ user.get_full_name }}</h2>
-<p>Username: {{ user.username }}</p>
-<p>Phone Number: {{ user.profile.phone_number }}</p>
-<p>Birth Date: {{ user.profile.birth_date }}</p>
+<ul>
+  <li>Username: {{ user.username }}</li>
+  <li>Phone Number: {{ user.phone_number }}</li>
+    <li> Email: {{ user.email }}</li>
+  <li>Birth Date: {{ user.profile.birth_date }}</li>
+</ul>
 
-<form method="post">
-  {% csrf_token %}
-  {{ user_form.as_p }}
-  {{ profile_form.as_p }}
-  <button type="submit">Save changes</button>
-</form>
 
+<div class="UpdatingProfile">
+    <h2>Updating Profile</h2>
+    <form class="site-form" action="/profile.html" method="post">
+        {{ csrf_token }}
+        {{ u_form.as_p }}
+        {{ p_form.as_p }}
+            <button type="submit">Submit</button>
+
+
+    </form>
+    </div>
 {% endblock %}
