@@ -247,14 +247,21 @@ span.psw {
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
+      {% if user.is_authenticated %}
       <li class="nav-item">
-        <a class="nav-link" href="Home">Home</a>
+        <a class="nav-link" href="profile">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="scheduler">Schedule</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="ServiceMenu">Service Menu</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="gallery">Gallery</a>
       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="reward">Rewards</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Contact">Contact Us</a>
@@ -263,8 +270,23 @@ span.psw {
         <a class="nav-link" href="location">Location</a>
       </li>
       <ul class="sidebar-nav">
-{% if user.is_authenticated %}
      {% else %}
+        <li class="nav-item">
+        <a class="nav-link" href="Home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ServiceMenu">Service Menu</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="gallery">Gallery</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Contact">Contact Us</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="location">Location</a>
+      </li>
+      <ul class="sidebar-nav">
      <p><a href="{% url 'register'%}?next={{request.path}}"><p>Register</p></a></p>
     {% endif %}
         </ul>

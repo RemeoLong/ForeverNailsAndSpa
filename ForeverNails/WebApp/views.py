@@ -30,6 +30,9 @@ def Gallery(request):
 def location(request):
     return render(request, 'index/location.html', {})
 
+def scheduler(request):
+    return render(request, 'index/scheduler.html', {})
+
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
