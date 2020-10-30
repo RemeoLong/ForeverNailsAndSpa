@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-from .models import Post
-from .covid_form import PostForm
+from .models import *
+from .postform import PostForm
 from django.contrib.auth import logout, authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
@@ -15,23 +15,30 @@ from django.contrib.auth.decorators import login_required
 def Main(request):
     return render(request, 'index/Main.html', {})
 
+
 def Menu(request):
     return render(request, 'index/Menu.html', {})
+
 
 def LogIN(request):
     return render(request, 'registration/login.html', {})
 
+
 def Contact(request):
     return render(request, 'index/Contact.html', {})
+
 
 def Gallery(request):
     return render(request, 'index/gallery.html', {})
 
+
 def location(request):
     return render(request, 'index/location.html', {})
 
+
 def scheduler(request):
     return render(request, 'index/scheduler.html', {})
+
 
 def register(request):
     if request.method == "POST":
@@ -57,25 +64,22 @@ def register(request):
 
 
 @login_required(login_url="/Home")
-def Profile(request):
+def profile(request):
     if request.method == "POST":
-        u_form = UserForm(request.POST, request.FILES)
-        p_form = ProfileForm(request.POST, request.FILES)
-        if u_form.is_valid() and p_form.is_valid():
-            u_form.save()
-            p_form.save()
+        p_form = ProfileUpdateForm(request.POST, request.FILES)
+        if p_form.is_valid():
+            profiles = p_form.save(commit=False)
+            profile.user_name = User.objects.get(username=User.username)
+            profiles.save()
             messages.success(request, 'Your profile was successfully updated!')
             return redirect('index/profile.html')
+        else:
+            p_form = ProfileForm
+            return render(request, 'index/profile.html', {'p_form': p_form})
     else:
-        u_form = UserForm
         p_form = ProfileForm
-        return render(request, 'index/profile.html', {'u_form': u_form, 'p_form': p_form})
+        return render(request, 'index/profile.html', {'p_form': p_form})
 
-
-
-def update_profile(request, user_id):
-    user = User.objects.get(pk=user_id)
-    user.save()
 
 class ProfileUpdateView(LoginRequiredMixin, TemplateView):
     user_form = UserForm
@@ -97,7 +101,7 @@ class ProfileUpdateView(LoginRequiredMixin, TemplateView):
             user_update.save()
             profile_update.save()
             messages.success(request, 'Your profile was successfully updated!')
-            return HttpResponseRedirect(reverse_lazy('profile'))
+            return HttpResponseRedirect(reverse_lazy('index/profile.html'))
 
         context = self.get_context_data(
                                         user_update=UserUpdateForm,
@@ -110,9 +114,25 @@ class ProfileUpdateView(LoginRequiredMixin, TemplateView):
         return self.post(request, *args, **kwargs)
 
 
+def add(request):
+    if request.method != "POST":
+        messages.error(request,"Can't add like that!")
+        return redirect('/scheduler')
+    else:
+        add_appoint= Appointment.objects.appointval(request.POST, request.session['id'])
+        if add_appoint[0] == False:
+            for each in add_appoint[1]:
+                messages.error(request, each)
+            return redirect('/scheduler')
+        if add_appoint[0] == True:
+            messages.success(request, 'Appointment Successfully Added')
+            return redirect('/scheduler')
+
+
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'index/post_detail.html', {'post': post})
+
 
 def post_new(request):
     form = PostForm()

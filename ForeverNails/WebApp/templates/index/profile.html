@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block head %}
+
  p {
   font-family: lobster;
   font-size: 25px;
   text-align: center;
   color: white;
-}
 
 {% endblock %}
 
@@ -15,15 +15,14 @@
 <h2>Username: {{ user.username }}</h2>
   <p>First Name: {{ user.first_name }}</p>
   <p>Last Name: {{ user.last_name }}</p>
-  <p> Email: {{ user.email }}</p>
-  <p>Phone Number: {{ user.phone_number }}</p>
+  <p>Email: {{ user.email }}</p>
+  <p>Phone Number: {{ user.profile.phone_number }}</p>
   <p>Birth Date: {{ user.profile.birth_date }}</p>
 
 <div class="UpdatingProfile">
-    <h2>Updating Profile</h2>
-    <form class="site-form" action="index/profile.html" method="post">
-        {{ csrf_token }}
-        {{ u_form.as_p }}
+    <h2>Update Profile</h2>
+    <form class="site-form" action="profile" method="post">
+        {% csrf_token %}
         {{ p_form.as_p }}
         <button type="submit">Submit</button>
 

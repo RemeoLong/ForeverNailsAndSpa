@@ -38,7 +38,7 @@ class userManager(models.Manager):
         errors = []
         if 'email' in postData and 'password' in postData:
             try:
-                print 50*('8')
+                print() 50*('8')
                 user = User.objects.get(email = postData['email'])#userManage acceses the database using .get (finds that one user's object)
             except User.DoesNotExist: #if the user doesnt exist from the .get(.get returns nothin, this 'except' prevents an error message)
                 print 50*('4')
