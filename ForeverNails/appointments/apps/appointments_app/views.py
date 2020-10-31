@@ -93,16 +93,16 @@ def edit_appoint(request, appoint_id):
 def add(request):
     if request.method != "POST":
         messages.error(request,"Can't add like that!")
-        return redirect('/scheduler')
+        return redirect('/')
     else:
         add_appoint= Appointment.objects.appointval(request.POST, request.session['id'])
         if add_appoint[0] == False:
             for each in add_appoint[1]:
                 messages.error(request, each) #for each error in the list, make a message for each one.
-            return redirect('/scheduler')
+            return redirect('/appoint')
         if add_appoint[0] == True:
             messages.success(request, 'Appointment Successfully Added')
-            return redirect('/scheduler')
+            return redirect('/appoint')
 #
 def delete(request, appoint_id):
     try:

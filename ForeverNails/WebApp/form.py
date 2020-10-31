@@ -30,26 +30,14 @@ class UserUpdateForm(UserForm, UserChangeForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('first_name', 'last_name', 'email', 'phone_number', 'birth_date')
+        fields = ('phone_number', 'birth_date')
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.TextInput(attrs={'class': 'form-control'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
             'birth_date': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 
 class ProfileUpdateForm(ProfileForm, UserChangeForm):
-    first_name = forms.CharField(
-        required=True, widget=forms.TextInput(attrs={'class': 'form-control'})
-    )
-    last_name = forms.CharField(
-        required=True, widget=forms.TextInput(attrs={'class': 'form-control'})
-    )
-    email = forms.EmailField(
-        required=True, widget=forms.TextInput(attrs={'class': 'form-control'})
-    )
     phone_number = forms.IntegerField(
         required=True, widget=forms.TextInput(attrs={'class': 'form-control'})
     )
@@ -61,4 +49,4 @@ class ProfileUpdateForm(ProfileForm, UserChangeForm):
 class CreateProfile(forms.ModelForm):
     class Meta:
         model: Profile
-        fields = ['first_name', 'last_name', 'email', 'phone_number', 'birth_date']
+        fields = ['phone_number', 'birth_day']
