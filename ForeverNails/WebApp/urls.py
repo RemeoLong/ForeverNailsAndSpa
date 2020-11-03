@@ -21,7 +21,7 @@ urlpatterns = [
     path('register', views.register, name='register'),
     path('post/<int:pk>/', views.post_detail, name='post_detail'),
     path('post/new/', views.post_new, name='post_new'),
-    path('profile', views.Profile, name='profile'),
+    path('profile', views.update_profile, name='profile'),
     path('scheduler', views.scheduler, name='scheduler'),
 ]
 

@@ -44,9 +44,3 @@ class ProfileUpdateForm(ProfileForm, UserChangeForm):
     birth_date = forms.CharField(
         required=True, widget=forms.TextInput(attrs={'class': 'form-control'})
     )
-
-
-class CreateProfile(forms.ModelForm):
-    class Meta:
-        model: Profile
-        fields = ['phone_number', 'birth_day']

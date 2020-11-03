@@ -42,17 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'WebApp.apps.WebappConfig',
     'django.contrib.admin',
-    'schedule',
-    'djangobower',
 ]
-
-BOWER_INSTALLED_APPS = (
-    'jquery',
-    'jquery-ui',
-    'bootstrap',
-    'fullcalendar',
-    'fullcalendar#3.8.2',
-)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -142,12 +132,9 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 
 STATIC_URL = '/static/'
 
-BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_ROOT, 'components')
-
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'djangobower.finders.BowerFinder',
 ]
 
 LOGIN_REDIRECT_URL = '/profile'

@@ -11,6 +11,7 @@ from django.views.generic import TemplateView
 from braces.views import LoginRequiredMixin
 from .form import *
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
 
 def Main(request):
     return render(request, 'index/Main.html', {})
@@ -57,25 +58,30 @@ def register(request):
 
 
 @login_required(login_url="/Home")
-def Profile(request):
+@transaction.atomic
+def update_profile(request):
     if request.method == "POST":
-        u_form = UserForm(request.POST, request.FILES)
-        p_form = ProfileForm(request.POST, request.FILES)
+        u_form = UserForm(request.POST, instance=request.user)
+        p_form = ProfileForm(request.POST, instance=request.user.profile)
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
             messages.success(request, 'Your profile was successfully updated!')
             return redirect('index/profile.html')
+        else:
+            messages.error(request, _('Please correct the error below'))
     else:
         u_form = UserForm
         p_form = ProfileForm
-        return render(request, 'index/profile.html', {'u_form': u_form, 'p_form': p_form})
+    return render(request, 'index/profile.html', {
+        'u_form': u_form,
+        'p_form': p_form
+    })
 
 
-
-def update_profile(request, user_id):
-    user = User.objects.get(pk=user_id)
-    user.save()
+#def update_profile(request, user):
+#    user = User.objects.get(pk=user)
+#    user.save()
 
 class ProfileUpdateView(LoginRequiredMixin, TemplateView):
     user_form = UserForm
