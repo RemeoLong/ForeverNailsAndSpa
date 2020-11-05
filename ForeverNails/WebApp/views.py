@@ -14,23 +14,23 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
 
-def Main(request):
+def main(request):
     return render(request, 'index/Main.html', {})
 
 
-def Menu(request):
+def menu(request):
     return render(request, 'index/Menu.html', {})
 
 
-def LogIN(request):
+def login(request):
     return render(request, 'registration/login.html', {})
 
 
-def Contact(request):
+def contact(request):
     return render(request, 'index/Contact.html', {})
 
 
-def Gallery(request):
+def gallery(request):
     return render(request, 'index/gallery.html', {})
 
 

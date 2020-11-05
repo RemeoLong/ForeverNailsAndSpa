@@ -10,13 +10,13 @@ from django.conf import settings
 
 
 urlpatterns = [
-    path('', views.Main, name='Main'),
-    path('Home', views.Main, name='Main'),
-    path('ServiceMenu', views.Menu, name='Menu'),
-    path('Contact', views.Contact, name='Contact'),
+    path('', views.main, name='Main'),
+    path('Home', views.main, name='Main'),
+    path('ServiceMenu', views.menu, name='Menu'),
+    path('Contact', views.contact, name='Contact'),
     path('location', views.location, name='location'),
-    path('gallery', views.Gallery, name='Gallery'),
-    path('login', views.LogIN, name='login'),
+    path('gallery', views.gallery, name='Gallery'),
+    path('login', views.login, name='login'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('register', views.register, name='register'),
     path('post/<int:pk>/', views.post_detail, name='post_detail'),
