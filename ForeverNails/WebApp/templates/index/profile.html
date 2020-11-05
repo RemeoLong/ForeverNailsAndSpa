@@ -22,7 +22,7 @@
 <div class="UpdatingProfile">
     <h2>Updating Profile</h2>
     <form class="site-form" action="profile" method="post">
-        {{ csrf_token }}
+        {% csrf_token %}
         {{ u_form.as_p }}
         {{ p_form.as_p }}
         <button type="submit">Save Changes</button>
