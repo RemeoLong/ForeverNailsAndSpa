@@ -1,0 +1,61 @@
+body {
+  background-image: url("ped.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: scroll;
+  background-size: 1920px 1200px;
+  padding-left: 15px;
+  border: 10px solid transparent;
+}
+
+h1 {
+  font-size: 100px;
+  text-align: center;
+  color: #000066;
+  font-family: 'lobster';
+}
+
+p {
+  font-family: lobster;
+  font-size: 25px;
+  text-align: center;
+  color: #000066;
+}
+
+p1 {
+  font-family: lobster;
+  font-size: 40px;
+  text-align: right;
+}
+
+p2 {
+  font-family: lobster;
+  font-size: 25px;
+  text-align: left;
+}
+
+h3 {
+    font-family: lobster;
+    font-size: 35px;
+    text-align: center;
+
+}
+
+a {
+    front-family: lobster;
+    font-size: 30px;
+    text-align: left;
+    color: #000066;
+}
+
+.cTable td {
+    text-align: center;
+}
+
+ .jumbotron {
+   background: url('static/css/sign.PNG') no-repeat;
+   -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+}

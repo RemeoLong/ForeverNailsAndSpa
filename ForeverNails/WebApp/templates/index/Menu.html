@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+.body-image {
+  background: url('static/css/ped1.jpg') no-repeat 100%;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 1920 px 250 px;
+  height: 100%;
+  position: relative;
+}
+.collapsible {
+  background-color: #ffffff00;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+}
+.active, .collapsible:hover {
+  background-color: #ffffff00;
+}
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #ffffff00;
+}
+{% endblock %}
+
+
+{% block body %}
+<h2>Services Menu</h2>
+<div class="container" style="margin-top:30px">
+  <div class="row">
+    <div class="col-md">
+<button type="button" class="collapsible"><h4>Manicure</h4></button>
+<div class="content">
+    <p>Regular Manicure: $15</p>
+    <p>Paraffin Manicure: $18 Details:(Manicure with Paraffin hot wax.)</p>
+<p>Deluxe Manicure: $20
+    Details:(includes everything in the Paraffin and additional mask, massage with stones, and hot towels.) </p>
+<p>Super Deluxe Manicure: $25
+    Details:(includes everything in the Deluxe and additional massage with OPI lotion, and 4 mins shoulder massage.)</p>
+<p>Organic Spa Manicure: $30
+    Details:(includes everything in the Super Deluxe using all organic products and 5 mins shoulder massage.) </p>
+<p>Pearl Manicure: $35
+Details:(includes everything in the Super Deluxe using all Pearl productshat absorbs oil & impurities, keep skin smooth
+& clear, filter sunrays, contains over 20 amino acids, natural moisturizer and renew skin cells. Also, includes 10 mins
+    shoulder massage.)</p>
+<p>Detox Spa Manicure: $40
+Details:(includes everything in the Super Deluxe using Detox products that absorbs oil & impurities, remove dead skin,
+keep skin smooth & clear, filter sunrays, contains over 25 amino acids. natural moisturizer, and renew skin cells. Also,
+    includes 15 mins shoulder massage.)</p>
+    </div>
+
+        <div class="row">
+    <div class="col-md">
+<button type="button" class="collapsible"><h4>Pedicure</h4></button>
+<div class="content">
+    <p>Regular Spa Pedicure: $25
+Details: (includes: dispoable liner, buffer, trim & shape, toenails soften & treat, sea salt massage callus remover
+        (remove dead skin on heel), foot massage and hot towels.)</p>
+<p>Special Spa Pedicure: $30 Details:(includes everything in the Regular and additional: paraffin hot wax massage, hot
+    stone & towels, and massage with lotion.)</p>
+<p> Deluxe Spa Pedicure: $35 Details:(includes everything in the Special and additional: sea salt massage with fresh
+    orange mask and hot towel wrap.)</p>
+<p>Super Deluxe Pedicure: $45 Details:(includes everything in the Deluxe and additional: sugar mash that makes skin
+    soft & rich with vitamins, massage with fresh oranges, and massage with lotion.)</p>
+    <p>Organic Spa Pedicure: $50 Details:(includes everything in the Super Deluxe using all organic products.)</p>
+<p>Pearl Spa Pedicure: $55 Details:(includes everything in the Super Deluxe using all Pearl products that absorbs oil &
+impurities, keep skin smooth & clear, filter sunrays, contains over 20 amino acids, natural moisturizer and renew skin
+    cells. Also, includes 5 mins massage on shoulders and 20 mins massage on feet.)</p>
+<p>Detox Spa Pedicure: $60 Details:(includes everything in the Super Deluxe using Detox products that absorbs oil &
+    impurities, remove dead skin, keep skin smooth & clear, filter sunrays, contains over 25 amino acids. natural
+    moisturizer, and renew skin cells. Also, includes 10 mins massage on shoulders and 20 mins massage on feet.)</p>
+    <p>Note: Request For Extra Massage = $1 per Minute</p>
+</div>
+
+            <div class="row">
+    <div class="col-md">
+<button type="button" class="collapsible"><h4>Nails</h4></button>
+<div class="content">
+  <p>Solar Full Set(clear tips): $25 <br>
+Solar Full Set(white tips): $28<br>
+Refill: $18<br>
+Solar Full Set(Pink & White: $35<br>
+Glitter Full Set: $35<br>
+Refill(Pink & White): $30<br>
+Dipping Powder: $35<br>
+Color Powder Full Set: $35<br>
+Refill(same color): $25<br>
+Refill(different color): $33<br>
+Nail Repair: $3+<br>
+Nail Take Off: $5+<br>
+Cut Down: $3<br>
+Color Change(hand nails): $7<br>
+Color Change(toe nails): $8<br>
+French Tips: $5<br>
+UV Gel: $3<br>
+Longer & Different Shape: $5+</p>
+        </div>
+    </div>
+</div>
+
+        <div class="row">
+    <div class="col-md">
+<button type="button" class="collapsible"><h4>Gel Nails (Shellac)</h4></button>
+<div class="content">
+<p>Shellac Manicure: $25<br>
+Shellac Pedicure: $37<br>
+Shellac Color Change: $15<br>
+French: $20<br>
+Take Off: $3</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md">
+<button type="button" class="collapsible"><h4>Facials</h4></button>
+<div class="content">
+    <p>Regular: $35
+Details:(Clean, scrub, exfoliation, remove breakouts, and massage)</p>
+<p>Deluxe: $45
+    Details:(includes Regular, with addition of facial mask that renews skin and longer massage.)</p>
+<p>European Facial: $55
+Details:(Deeper cleaning, scrub, gentle extraction, pore cleaning, hot stone massage, mineral mask
+renewing skin, and anti-stress massage) </p>
+</div>
+    </div>
+        <div class="row">
+    <div class="col-md">
+        <button type="button" class="collapsible"><h4>Eye Lashes</h4></button>
+<div class="content">
+    <p>Strip: $15</p>
+    <p>Individuals: $25+</p>
+    <p>Special Extensions: $60</p>
+    <p>Mink Lash: $80</p>
+</div>
+    </div>
+        <div class="row">
+    <div class="col-md">
+<button type="button" class="collapsible"><h4>Waxing</h4></button>
+<div class="content">
+    <p>Eyebrows: $7</p>
+<p>Dye Eyebrows: $12</p>
+<p>Lips: $5</p>
+<p>Chin: $8+</p>
+<p>Full Face: $25</p>
+<p>Under Arms: $15</p>
+<p>Half Arms: $20+</p>
+<p>Full Arms: $30+</p>
+<p>Half Legs: $25+</p>
+<p>Full Legs: $35+</p>
+<p>Back: $35+</p>
+<p>Bikini Line: $25+</p>
+<p>Brazilian: $40+</p>
+</div>
+    </div>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+{% endblock %}
