@@ -1,15 +1,36 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block head %}
+p {
+  font-family: lobster;
+  font-size: 25px;
+  text-align: center;
+  color: white;
+}
+{% endblock %}
 
 {% block body %}
-<p>Welcome to Forever Nails & Spa</p>
+{% if user.is_authenticated %}
+<h4>Welcome to Forever Nails & Spa</h4>
       <p>Call us At:</p>
       <p>Phone: (281) 201-2872 to Schedule an appointment</p>
-      <p>Or</p>
-      <p>Log In///Register</p>
-      <p>into this Website or Mobile App to Schedule.</p>
+      <p>Or Click on <a class="nav-link" href="scheduler">Schedule</a> to book an appointment</p>
       <p>We hope to Service you Soon!!!</p>
       <p>We are open Wednesday through Saturday</p>
       <p>from 9 AM to 7 PM</p>
-      <p> Sunday from 11 AM to 5 PM</p>
+      <p>Sunday from 11 AM to 5 PM</p>
       <p></p>
+{% else %}
+<p>Welcome to Forever Nails & Spa</p>
+      <p>Call us At:</p>
+      <p>Phone: (281) 201-2872 to Schedule an appointment</p>
+      <p>OR Log In /// Register to Schedule.</p>
+      <p>We hope to Service you Soon!!!</p>
+      <p>We are open Wednesday through Saturday</p>
+      <p>from 9 AM to 7 PM</p>
+      <p>Sunday from 11 AM to 5 PM</p>
+      <p></p>
+{% endif %}
+
+
 {% endblock %}

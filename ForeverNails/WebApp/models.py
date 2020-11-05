@@ -36,7 +36,7 @@ class Employee(models.Model):
     )
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
-    phone_number = models.IntegerField(default="", editable=False)
+    phone_number = models.CharField(default="", max_length=10, editable=False)
     skills = models.CharField(max_length=100, choices=skills_choices)
     clock_in = models.DateTimeField(default=timezone.now)
     clock_out = models.DateTimeField(default=timezone.now)
@@ -52,17 +52,16 @@ class Employee(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_number = models.IntegerField(default="", editable=True)
+    phone_number = models.CharField(default="", max_length=10,  editable=True)
     birth_date = models.DateField(null=True, blank=True)
 
 
-#@receiver(post_save, sender= User)
+@receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 
 
-#@receiver(post_save, sender=User)
+@receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
-

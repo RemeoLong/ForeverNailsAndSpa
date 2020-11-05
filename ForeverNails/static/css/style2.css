@@ -1,0 +1,62 @@
+.page-divider {
+border:none;
+}
+
+body {
+margin: 0;
+padding: 0;
+background-color: gray;
+}
+.jumbotron h1{
+color: #ffffff00
+}
+
+h1 {
+  font-size: 100px;
+  text-align: center;
+  color: #ffffff00;
+  font-family: 'lobster';
+}
+
+h2 {
+  font-size: 100px;
+  text-align: center;
+  color: #000066;
+  font-family: 'lobster';
+}
+
+h3 {
+  font-family: lobster;
+  font-size: 25px;
+  text-align: center;
+  color: #ffffff00;
+}
+
+h4 {
+  font-family: lobster;
+  font-size: 75px;
+  text-align: center;
+  color: white;
+}
+
+p {
+  font-family: lobster;
+  font-size: 25px;
+  text-align: center;
+  color: #000066;
+}
+
+p1 {
+  font-family: lobster;
+  font-size: 25px;
+  text-align: center;
+  color: white;
+}
+.nav {
+display: flex;
+justify-content: center;
+list-style: none;
+}
+.li {
+text-align:center;
+}
