@@ -22,7 +22,7 @@ def menu(request):
     return render(request, 'index/Menu.html', {})
 
 
-def login(request):
+def LogIN(request):
     return render(request, 'registration/login.html', {})
 
 
@@ -75,7 +75,7 @@ def update_profile(request):
             u_form.save()
             p_form.save()
             messages.success(request, 'Your profile was successfully updated!')
-            return redirect('index/profile.html')
+            return redirect('profile')
         else:
             messages.error(request, _('Please correct the error below'))
     else:
