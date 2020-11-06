@@ -41,7 +41,7 @@ class Employee(models.Model):
     clock_in = models.DateTimeField(default=timezone.now)
     clock_out = models.DateTimeField(default=timezone.now)
     active = models.BooleanField(default=True)
-    appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
+#    appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.first_name) + str(self.last_name)
@@ -94,3 +94,45 @@ class Appointment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     status = models.CharField(max_length=50)
+
+
+class apptManager(models.Manager):
+    def apptval(self, postData, id):
+        errors = []
+        print(postData["time"])
+        print(datetime.now().strftime("%H:%M"))
+        if postData['date']:
+            if not postData["date"] >= unicode(date.today()):
+                errors.append("Date must be set in future!")
+            if len(postData["date"]) < 1:
+                errors.append("Date field can not be empty")
+            print("got to appointment post Data:", postData['date'])
+        if len(Appointment.objects.filter(date = postData['date'], time=postData['time'])) > 0:
+            errors.append("Can Not create an appointment on existing date and time")
+        if len(postData['task']) < 2:
+            errors.append("Please insert take, must be more than 2 characters")
+        if len(errors) == 0:
+            makeappoint = Appointment.objects.create(user=User.objects.get(id=id), services=postData['services'],
+                                                     date=str(postData['date']), time=postData['time'])
+            return True, makeappoint
+        else:
+            return False, errors
+
+    def edit_appointment(self, postData, app_id):
+        errors = []
+        print(errors)
+        # if postData['edit_date']:
+        if not postData["edit_date"] >= unicode(date.today()):
+            errors.append("Appointment date can't be in the past!")
+            print("appoint date can't be past")
+        if postData["edit_date"] == "" or len(postData["edit_services"]) < 1:
+            errors.append("All fields must be filled out!")
+            print("all fields must fill out pop out")
+        if not errors:
+            update_time = self.filter(id = app_id).update(task=postData['edit_services'],
+                                                          status=postData['edit_status'],
+                                                          time=postData['edit_time'],
+                                                          date=postData['edit_date'])
+            return True, update_time
+        else:
+            return False, errors

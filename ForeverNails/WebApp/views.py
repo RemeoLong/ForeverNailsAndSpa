@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-from .models import Post
+from .models import *
 from .covid_form import PostForm
 from django.contrib.auth import logout, authenticate, login
 from django.shortcuts import render, redirect
@@ -11,6 +11,7 @@ from django.views.generic import TemplateView
 from .form import *
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+
 
 
 def main(request):
@@ -37,8 +38,8 @@ def location(request):
     return render(request, 'index/location.html', {})
 
 
-def scheduler(request):
-    return render(request, 'index/scheduler.html', {})
+#def scheduler(request):
+#    return render(request, 'index/scheduler.html', {})
 
 
 def register(request):
@@ -84,6 +85,77 @@ def update_profile(request):
         'u_form': u_form,
         'p_form': p_form
     })
+
+
+@login_required(login_url="/Home")
+@transaction.atomic
+def scheduler(request):
+    if request.method == "POST":
+        a_form = AppointmentForm(request.POST, instance=request.appointment)
+        if a_form.is_valid():
+            a_form.save()
+            messages.success(request, 'Your Appointment was successfully updated!')
+            return redirect('scheduler')
+        else:
+            a_form = AppointmentForm
+            messages.error(request, _('Please correct the error below'))
+            if not add_appoint[0]:
+                for each in add_appoint[1]:
+                    messages.error(request, each)
+                return redirect('scheduler')
+            if add_appoint[0]:
+                messages.success(request, 'Appointment Successfully Added')
+                return redirect('scheduler')
+    else:
+        a_form = AppointmentForm
+    return render(request, 'index/scheduler.html', {
+        'a_form': a_form,
+    })
+
+
+def update(request, appoint_id):
+    try:
+        appointment = Appointment.objects.get(id=appoint_id)
+    except Appointment.DoesNotExist:
+        messages.info(request, "Appointment Not Found")
+        return redirect('scheduler')
+
+    context = {
+        "appointment": appointment,
+    }
+    return render(request, 'index/scheduler.html', context)
+
+
+def edit_appoint(request, appoint_id):
+    if 'id' not in request.session:
+        return redirect('/')
+    if request.method != 'POST':
+        messages.info(request, "Cannot edit like this!")
+        return redirect('/update' + appoint_id)
+
+    try:
+        print("/")
+        update_app = Appointment.objects.edit_appointment(request.POST, appoint_id)
+        print("got to edit_appoint Try")
+    except Appointment.DoesNotExist:
+        messages.info(request,"appointment Not Found")
+        return redirect('/update/'+appoint_id)
+    if not update_app[0]:
+        messages.info(request, "Please fill in all the spaces and make sure it's valid!")
+        return redirect('/update/'+appoint_id)
+    else:
+        messages.success(request, "Successfully Updated Appointment")
+        return redirect('scheduler')
+
+
+def delete(request, appoint_id):
+    try:
+        target = Appointment.objects.get(id=appoint_id)
+    except Appointment.DoesNotExist:
+        messages.info(request, "Message Not Found")
+        return redirect('scheduler')
+    target.delete()
+    return redirect('scheduler')
 
 
 def post_detail(request, pk):

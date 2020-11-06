@@ -30,13 +30,13 @@ p {
 {% endblock %}
 
 {% block body %}
-<h4>Username: {{ user.username }}</h4>
-  <p>First Name: {{ user.first_name }}</p>
-  <p>Last Name: {{ user.last_name }}</p>
-  <p>Email: {{ user.email }}</p>
-  <p>Phone Number: {{ user.profile.phone_number }}</p>
-  <p>Birth Date: {{ user.profile.birth_date }}</p>
-  <p>User_ID: {{ user.profile.id }}</p>
+<h4>Current Profile Information</h4>
+<p>Username: {{ user.username }}</p>
+<p>First Name: {{ user.first_name }}</p>
+<p>Last Name: {{ user.last_name }}</p>
+<p>Email: {{ user.email }}</p>
+<p>Phone Number: {{ user.profile.phone_number }}</p>
+<p>Birth Date: {{ user.profile.birth_date }}</p>
 
 
 <div class="UpdatingProfile">

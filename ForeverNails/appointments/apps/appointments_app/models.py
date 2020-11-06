@@ -84,7 +84,6 @@ class User(models.Model):
 class appointManager(models.Manager):
     def appointval(self, postData, id):
         errors = []
-        # print str(datetime.today()).split()[1]-> to see just the time in datetime
         print(postData["time"])
         print(datetime.now().strftime("%H:%M"))
         if postData['date']:
