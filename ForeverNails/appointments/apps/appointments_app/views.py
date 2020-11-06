@@ -13,7 +13,7 @@ def register(request):
     if request.method == 'GET':
         return redirect ('/')
     newuser = User.objects.validate(request.POST)
-    print newuser
+    print(newuser)
     if newuser[0] == False:
         for each in newuser[1]:
             messages.error(request, each) #for each error in the list, make a message for each one.
@@ -30,7 +30,7 @@ def login(request):
         return redirect('/')
     else:
         user = User.objects.login(request.POST)
-        print user
+        print(user)
         if user[0] == False:
             for each in user[1]:
                 messages.add_message(request, messages.INFO, each)
@@ -79,7 +79,7 @@ def edit_appoint(request, appoint_id):
     try:
         print("/"*50)
         update_app = Appointment.objects.edit_appointment(request.POST, appoint_id)
-        print "got to edit_appoint Try"
+        print("got to edit_appoint Try")
     except Appointment.DoesNotExist:
         messages.info(request,"appointment Not Found")
         return redirect('/update/'+appoint_id)
@@ -117,7 +117,7 @@ def delete(request, appoint_id):
 def logout(request):
     if 'id' not in request.session:
         return redirect('/')
-    print "*******"
-    print request.session['id']
+    print("*******")
+    print(request.session['id'])
     del request.session['id']
     return redirect('/')

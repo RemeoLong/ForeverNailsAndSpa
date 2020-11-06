@@ -85,41 +85,40 @@ class appointManager(models.Manager):
     def appointval(self, postData, id):
         errors = []
         # print str(datetime.today()).split()[1]-> to see just the time in datetime
-        print postData["time"]
-        print datetime.now().strftime("%H:%M")
+        print(postData["time"])
+        print(datetime.now().strftime("%H:%M"))
         if postData['date']:
             if not postData["date"] >= unicode(date.today()):
                 errors.append("Date must be set in future!")
             if len(postData["date"]) < 1:
                 errors.append("Date field can not be empty")
-            print "got to appointment post Data:", postData['date']
+            print("got to appointment post Data:", postData['date'])
         if len(Appointment.objects.filter(date = postData['date'] ,time= postData['time'])) > 0:
             errors.append("Can Not create an appointment on existing date and time")
         if len(postData['task'])<2:
             errors.append("Please insert take, must be more than 2 characters")
         if len(errors)==0:
             makeappoint= Appointment.objects.create(user=User.objects.get(id=id), task= postData['task'],date= str(postData['date']),time= postData['time'])
-            return(True, makeappoint)
+            return True, makeappoint
         else:
-            return(False, errors)
+            return False, errors
 
     def edit_appointment(self, postData, app_id):
         errors = []
-        print errors
+        print(errors)
         # if postData['edit_date']:
         if not postData["edit_date"] >= unicode(date.today()):
             errors.append("Appointment date can't be in the past!")
-            print "appoint date can't be past"
+            print("appoint date can't be past")
         if postData["edit_date"] == "" or len(postData["edit_tasks"]) < 1:
             errors.append("All fields must be filled out!")
-            print "all fields must fill out pop out"
-        if errors == []:
+            print("all fields must fill out pop out")
+        if not errors:
             update_time= self.filter(id = app_id).update(task = postData['edit_tasks'], status = postData['edit_status'],
                                                          time = postData['edit_time'], date = postData['edit_date'])
-
-            return (True, update_time)
+            return True, update_time
         else:
-            return (False, errors)
+            return False, errors
 
 class Appointment(models.Model):
     user= models.ForeignKey(User, related_name="onrecord", blank=True, null=True)
