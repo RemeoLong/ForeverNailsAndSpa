@@ -66,24 +66,24 @@ def save_user_profile(sender, instance, **kwargs):
 
 class Appointment(models.Model):
     services_choices = (
-        ("Nails Solar Full Set", "NF"),
-        ("Solar P&W Full Set", "NWP"),
-        ("Powder Color Full Set", "NPC"),
-        ("Manicure Regular", "MR"),
-        ("Manicure Shellac", "MS"),
-        ("Pedicure Regular", "PR"),
-        ("Pedicure Shellac", "PS"),
-        ("Waxing", "W"),
-        ("Facial", "F"),
-        ("Eyelashes", "E"),
-        ("Massage", "M"),
-        ("Permanent Tattoo", "T"),
+        ("NF", "Nails Solar Full Set"),
+        ("NWP", "Solar P&W Full Set"),
+        ("NPC", "Powder Color Full Set"),
+        ("MR", "Manicure Regular"),
+        ("MS", "Manicure Shellac"),
+        ("PR", "Pedicure Regular"),
+        ("PS", "Pedicure Shellac"),
+        ("W", "Waxing"),
+        ("F", "Facial"),
+        ("E", "Eyelashes"),
+        ("M", "Massage"),
+        ("T", "Permanent Tattoo"),
     )
     provider_choices = (
-        ("Linh / Sugar", "Linh"),
-        ("Mia", "Hien"),
-        ("Jennifer", "Nhung"),
-        ("Theresa", "Cho Dung")
+        ("Linh", "Linh / Sugar"),
+        ("Hien", "Mia"),
+        ("Nhung", "Jennifer"),
+        ("Dung", "Theresa")
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     provider = models.ForeignKey(Employee, on_delete=models.CASCADE, choices=provider_choices, blank=True, default=None)

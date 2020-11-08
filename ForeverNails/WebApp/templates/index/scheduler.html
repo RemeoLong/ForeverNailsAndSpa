@@ -4,13 +4,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+.body-image {
+  background: url('static/css/ped1.jpg') no-repeat 100%;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 1920 px 250 px;
+  height: 900px;
+  position: relative;
+}
 
 p {
   font-family: lobster;
   font-size: 25px;
   text-align: center;
-  color: white;
+  color: pink;
 }
+
 h2 {
 color: white;
 }
@@ -18,13 +28,13 @@ color: white;
 {% endblock %}
 
 {% block body %}
-
+<p>Current Date & Time: <span id="datetime"></span></p>
 <div class="AppointmentForm">
-    <h4>Scheduler An Appointment</h4>
+    <h4>Schedule Appointment:</h4>
        <form class="site-form" action="scheduler" method="post">
         {% csrf_token %}
         {{ a_form.as_p }}
-        <button type="submit">Save Changes</button>
+        <button type="submit">Book Appointment</button>
     </form>
     </div>
 

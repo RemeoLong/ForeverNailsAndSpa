@@ -91,7 +91,7 @@ def update_profile(request):
 @transaction.atomic
 def scheduler(request):
     if request.method == "POST":
-        a_form = AppointmentForm(request.POST, instance=request.appointment)
+        a_form = AppointmentForm(request.POST, instance=request.user.appointment) #<<< issues here >>>#
         if a_form.is_valid():
             a_form.save()
             messages.success(request, 'Your Appointment was successfully updated!')
