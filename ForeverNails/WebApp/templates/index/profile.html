@@ -22,7 +22,7 @@ h4 {
 
 p {
   font-family: lobster;
-  font-size: 25px;
+  font-size: 30px;
   text-align: center;
   color: white;
 }
@@ -30,10 +30,9 @@ p {
 {% endblock %}
 
 {% block body %}
-<h4>Current Profile Information</h4>
+<h4>Current Profile: </h4>
 <p>Username: {{ user.username }}</p>
-<p>First Name: {{ user.first_name }}</p>
-<p>Last Name: {{ user.last_name }}</p>
+<p>Name: {{ user.first_name }} {{ user.last_name }}</p>
 <p>Email: {{ user.email }}</p>
 <p>Phone Number: {{ user.profile.phone_number }}</p>
 <p>Birth Date: {{ user.profile.birth_date }}</p>

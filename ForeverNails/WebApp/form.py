@@ -47,21 +47,42 @@ class ProfileUpdateForm(ProfileForm, UserChangeForm):
 
 
 class AppointmentForm(forms.ModelForm):
+    services_choices = (
+        ("Nails Solar Full Set", "NF"),
+        ("Solar P&W Full Set", "NWP"),
+        ("Powder Color Full Set", "NPC"),
+        ("Manicure Regular", "MR"),
+        ("Manicure Shellac", "MS"),
+        ("Pedicure Regular", "PR"),
+        ("Pedicure Shellac", "PS"),
+        ("Waxing", "W"),
+        ("Facial", "F"),
+        ("Eyelashes", "E"),
+        ("Massage", "M"),
+        ("Permanent Tattoo", "T"),
+    )
+    provider_choices = (
+        ("Linh / Sugar", "Linh"),
+        ("Mia", "Hien"),
+        ("Jennifer", "Nhung"),
+        ("Theresa", "Cho Dung")
+    )
     class Meta:
         model = Appointment
         fields = ('provider', 'services', 'date', 'time', 'comments')
         widgets = {
-            'provider': forms.MultipleChoiceField(required=False, widget=forms.CheckboxSelectMultiple,
-                                                  choices=[("Linh / Sugar", "Linh"), ("Mia", "Hien"),
-                                                           ("Jennifer", "Nhung"), ("Theresa", "Cho Dung")]),
-            'services': forms.MultipleChoiceField(required=True, widget=forms.CheckboxSelectMultiple,
-                                                  choices=[("Nails Solar Full Set", "NF"), ("Solar P&W Full Set", "NWP"),
-                                                           ("Powder Color Full Set", "NPC"), ("Manicure Regular", "MR"),
-                                                           ("Manicure Shellac", "MS"), ("Pedicure Regular", "PR"),
-                                                           ("Pedicure Shellac", "PS"), ("Waxing", "W"), ("Facial", "F"),
-                                                           ("Eyelashes", "E"), ("Massage", "M"),
-                                                           ("Permanent Tattoo", "T")]),
-            'date': forms.DateField(required=True, widget=forms.DateInput),
-            'time': forms.TimeField(required=True, widget=forms.TimeInput),
-            'comments': forms.TextInput(),
+'''            'provider': forms.ChoiceField(required=False, widget=forms.Select,
+                                          choices=[("Linh / Sugar", "Linh"), ("Mia", "Hien"),
+                                                   ("Jennifer", "Nhung"), ("Theresa", "Cho Dung")]),
+            'services': forms.ChoiceField(required=True, widget=forms.Select,
+                                          choices=[("Nails Solar Full Set", "NF"), ("Solar P&W Full Set", "NWP"),
+                                                   ("Powder Color Full Set", "NPC"), ("Manicure Regular", "MR"),
+                                                   ("Manicure Shellac", "MS"), ("Pedicure Regular", "PR"),
+                                                   ("Pedicure Shellac", "PS"), ("Waxing", "W"), ("Facial", "F"),
+                                                   ("Eyelashes", "E"), ("Massage", "M"),
+                                                   ("Permanent Tattoo", "T")]),'''
+  #          'date': forms.DateField(required=True, widget=forms.DateInput),
+    #        'time': forms.TimeField(required=True, widget=forms.TimeInput),
+   #         'comments': forms.CharField(widget=forms.TextInput(attrs={'cols': 4, 'rows': 4})),
+   #     }
         }
