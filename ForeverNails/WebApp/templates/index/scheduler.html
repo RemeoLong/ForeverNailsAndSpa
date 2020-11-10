@@ -64,7 +64,7 @@ color: white;
                 <!-- {{today_appoint}} -->
                 {% for appointment in today_appoint %}
                 <tr>
-                    <td>{{ appointment.task }}</td>
+                    <td>{{ appointment.services }}</td>
                     <td>{{ appointment.time }}</td>
                     <td>{{ appointment.status }}</td>
                     {% if appointment.status != 'Done' %}

@@ -38,10 +38,6 @@ def location(request):
     return render(request, 'index/location.html', {})
 
 
-#def scheduler(request):
-#    return render(request, 'index/scheduler.html', {})
-
-
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -91,21 +87,13 @@ def update_profile(request):
 @transaction.atomic
 def scheduler(request):
     if request.method == "POST":
-        a_form = AppointmentForm(request.POST, instance=request.user.appointment) #<<< issues here >>>#
+        a_form = AppointmentForm(request.POST, instance=request.user) #<<< issues here >>>#
         if a_form.is_valid():
             a_form.save()
             messages.success(request, 'Your Appointment was successfully updated!')
             return redirect('scheduler')
         else:
-            a_form = AppointmentForm
-            messages.error(request, _('Please correct the error below'))
-            if not add_appoint[0]:
-                for each in add_appoint[1]:
-                    messages.error(request, each)
-                return redirect('scheduler')
-            if add_appoint[0]:
-                messages.success(request, 'Appointment Successfully Added')
-                return redirect('scheduler')
+            messages.error(request, 'Please correct the error below')
     else:
         a_form = AppointmentForm
     return render(request, 'index/scheduler.html', {

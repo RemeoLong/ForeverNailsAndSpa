@@ -85,8 +85,8 @@ class Appointment(models.Model):
         ("Nhung", "Jennifer"),
         ("Dung", "Theresa")
     )
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
-    provider = models.ForeignKey(Employee, on_delete=models.CASCADE, choices=provider_choices, blank=True, default=None)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+    provider = models.CharField(max_length=20, choices=provider_choices, blank=True, default=None)
     services = models.CharField(max_length=255, choices=services_choices)
     date = models.DateField(blank=True, null=True)
     time = models.TimeField(blank=True, null=True)

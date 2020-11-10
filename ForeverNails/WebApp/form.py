@@ -47,26 +47,6 @@ class ProfileUpdateForm(ProfileForm, UserChangeForm):
 
 
 class AppointmentForm(forms.ModelForm):
-    services_choices = (
-        ("Nails Solar Full Set", "NF"),
-        ("Solar P&W Full Set", "NWP"),
-        ("Powder Color Full Set", "NPC"),
-        ("Manicure Regular", "MR"),
-        ("Manicure Shellac", "MS"),
-        ("Pedicure Regular", "PR"),
-        ("Pedicure Shellac", "PS"),
-        ("Waxing", "W"),
-        ("Facial", "F"),
-        ("Eyelashes", "E"),
-        ("Massage", "M"),
-        ("Permanent Tattoo", "T"),
-    )
-    provider_choices = (
-        ("Linh / Sugar", "Linh"),
-        ("Mia", "Hien"),
-        ("Jennifer", "Nhung"),
-        ("Theresa", "Cho Dung")
-    )
     class Meta:
         model = Appointment
         fields = ('provider', 'services', 'date', 'time', 'comments')
@@ -81,8 +61,8 @@ class AppointmentForm(forms.ModelForm):
                                                    ("Pedicure Shellac", "PS"), ("Waxing", "W"), ("Facial", "F"),
                                                    ("Eyelashes", "E"), ("Massage", "M"),
                                                    ("Permanent Tattoo", "T")]),'''
-  #          'date': forms.DateField(required=True, widget=forms.DateInput),
-    #        'time': forms.TimeField(required=True, widget=forms.TimeInput),
-   #         'comments': forms.CharField(widget=forms.TextInput(attrs={'cols': 4, 'rows': 4})),
+            'date': forms.DateInput(format='%d/%m/%y'),
+            'time': forms.TimeInput(format='%H:%M'),
+#            'comments': forms.CharField(widget=forms.TextInput(attrs={'cols': 4, 'rows': 4})),
    #     }
         }
