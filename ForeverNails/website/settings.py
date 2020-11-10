@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'WebApp.apps.WebappConfig',
     'django.contrib.admin',
-    'datetimewidget',
 ]
 
 MIDDLEWARE = [
