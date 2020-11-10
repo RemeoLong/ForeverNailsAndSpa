@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import *
 from django.contrib.auth.forms import UserChangeForm
+import datetime
 
 
 class UserForm(forms.ModelForm):
@@ -15,18 +16,6 @@ class UserForm(forms.ModelForm):
         }
 
 
-class UserUpdateForm(UserForm, UserChangeForm):
-    first_name = forms.CharField(
-        required=True, widget=forms.TextInput(attrs={'class': 'form-control'})
-    )
-    last_name = forms.CharField(
-        required=True, widget=forms.TextInput(attrs={'class': 'form-control'})
-    )
-    email = forms.EmailField(
-        required=True, widget=forms.TextInput(attrs={'class': 'form-control'})
-    )
-
-
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
@@ -37,32 +26,12 @@ class ProfileForm(forms.ModelForm):
         }
 
 
-class ProfileUpdateForm(ProfileForm, UserChangeForm):
-    phone_number = forms.IntegerField(
-        required=True, widget=forms.TextInput(attrs={'class': 'form-control'})
-    )
-    birth_date = forms.CharField(
-        required=True, widget=forms.TextInput(attrs={'class': 'form-control'})
-    )
-
-
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
         fields = ('provider', 'services', 'date', 'time', 'comments')
         widgets = {
-'''            'provider': forms.ChoiceField(required=False, widget=forms.Select,
-                                          choices=[("Linh / Sugar", "Linh"), ("Mia", "Hien"),
-                                                   ("Jennifer", "Nhung"), ("Theresa", "Cho Dung")]),
-            'services': forms.ChoiceField(required=True, widget=forms.Select,
-                                          choices=[("Nails Solar Full Set", "NF"), ("Solar P&W Full Set", "NWP"),
-                                                   ("Powder Color Full Set", "NPC"), ("Manicure Regular", "MR"),
-                                                   ("Manicure Shellac", "MS"), ("Pedicure Regular", "PR"),
-                                                   ("Pedicure Shellac", "PS"), ("Waxing", "W"), ("Facial", "F"),
-                                                   ("Eyelashes", "E"), ("Massage", "M"),
-                                                   ("Permanent Tattoo", "T")]),'''
             'date': forms.DateInput(format='%d/%m/%y'),
             'time': forms.TimeInput(format='%H:%M'),
-#            'comments': forms.CharField(widget=forms.TextInput(attrs={'cols': 4, 'rows': 4})),
-   #     }
+            'comments': forms.TextInput(attrs={'class': 'form-control'}),
         }

@@ -85,6 +85,11 @@ class Appointment(models.Model):
         ("Nhung", "Jennifer"),
         ("Dung", "Theresa")
     )
+    status_choices = (
+        ("A", "Active"),
+        ("X", "Cancelled"),
+        ("C", "Completed"),
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     provider = models.CharField(max_length=20, choices=provider_choices, blank=True, default=None)
     services = models.CharField(max_length=255, choices=services_choices)
@@ -93,7 +98,7 @@ class Appointment(models.Model):
     comments = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
-    status = models.CharField(max_length=50)
+    status = models.CharField(max_length=1, choices=status_choices)
 
 
 class apptManager(models.Manager):
