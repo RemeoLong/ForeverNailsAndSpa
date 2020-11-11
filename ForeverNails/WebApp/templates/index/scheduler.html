@@ -14,7 +14,7 @@
   -moz-background-size: 100% 100%;
   -o-background-size: 100% 100%;
   background-size: 1920 px 250 px;
-  height: 900px;
+  height: 100%;
   position: relative;
 }
 
@@ -32,7 +32,8 @@ color: white;
 {% endblock %}
 
 {% block body %}
-<p>Current Date & Time: <span id="datetime"></span></p>
+<p>Current Date & Time:</p>
+<p><span id="datetime"></span></p>
 <div class="AppointmentForm">
     <h4>Schedule Appointment:</h4>
        <form class="site-form" action="scheduler" method="post">
