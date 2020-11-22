@@ -90,11 +90,11 @@ def scheduler(request):
         a_form = AppointmentForm(request.POST, instance=request.user) #<<< issues here >>>#
         if a_form.is_valid():
             a_form.save()
- #           a_form.save(commit=False)
- #           makeappt = Appointment.objects.create(user=User.objects.get(id=id), provider=postData['provider'],
-  #                                                services=postData['services'], date=str(postData['date']),
- #                                                 time=postData['time'])
- #           a_form.save(commit)
+#           a_form.save(commit=False)
+#           makeappt = Appointment.objects.create(user=User.objects.get(id=id), provider=postData['provider'],
+#                                                services=postData['services'], date=str(postData['date']),
+#                                                 time=postData['time'])
+#           a_form.save(commit)
             messages.success(request, 'Your Appointment was successfully updated!')
             return redirect('scheduler')
         else:

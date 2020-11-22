@@ -285,11 +285,13 @@ span.psw {
       </li>
       <ul class="sidebar-nav">
      <p><a href="{% url 'register'%}?next={{request.path}}"><p>Register</p></a></p>
-    {% endif %}
-        </ul>
-    </div>
+       </ul>
+      </ul>
+    </ul>
+         </div>
   </div>
 </nav>
+     {% endif %}
 
     {% block body %}
     {% endblock %}
