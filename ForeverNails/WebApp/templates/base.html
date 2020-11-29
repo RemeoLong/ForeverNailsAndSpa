@@ -239,12 +239,12 @@ span.psw {
   </form>
   </form>
 </div>
+            {% if user.is_authenticated %}
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
-      {% if user.is_authenticated %}
       <li class="nav-item">
         <a class="nav-link" href="profile">Profile</a>
       </li>
@@ -267,7 +267,19 @@ span.psw {
         <a class="nav-link" href="location">Location</a>
       </li>
       <ul class="sidebar-nav">
+             </ul>
+      </ul>
+    </ul>
+    </div>
+  </div>
+</nav>
+
      {% else %}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
         <li class="nav-item">
         <a class="nav-link" href="Home">Home</a>
       </li>
@@ -285,11 +297,13 @@ span.psw {
       </li>
       <ul class="sidebar-nav">
      <p><a href="{% url 'register'%}?next={{request.path}}"><p>Register</p></a></p>
-    {% endif %}
-        </ul>
+         </ul>
+      </ul>
+    </ul>
     </div>
   </div>
 </nav>
+          {% endif %}
 
     {% block body %}
     {% endblock %}
